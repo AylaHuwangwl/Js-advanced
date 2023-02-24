@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <button class="btn">按钮1</button>
+  <button class="btn">按钮2</button>
+  <button class="btn">按钮3</button>
+  <button class="btn">按钮4</button>
+  <script>
+    var btnarr = document.querySelectorAll('.btn')
+    function foo(fn) {
+      console.log("这是foo函数");
+      fn()
+    }
+    function baz() {
+      console.log('这是baz函数')
+      function bar() {
+        console.log('hi')
+      }
+    }
+    foo(baz)
+    // for (var i = 0; i < 10; i++) {
+    //   console.log(i)
+    // }
+    // 使用立即执行函数解决闭包问题
+    // debugger
+    function foo() {
+      for (var i = 0; i < btnarr.length; i++) {
+        (function (f) {
+          btnarr[i].onclick = function click() {
+            console.log(`点击了按钮${f + 1}`)
+          }
+        })(i)
+      }
+    }
+    foo()
+  </script>
+</body>
+
+</html>

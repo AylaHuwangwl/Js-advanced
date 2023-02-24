@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 当希望函数总是显性的绑定到一个对象上(不希望obj对象身上有函数)
+    // 1、bind函数的基本使用
+    function foo(name,age,height,address){
+      console.log("foo函数",this);
+      console.log(name,age,height,address)
+    }
+    var obj = {
+      name:'why'
+    }
+    var bar = foo.bind(obj)
+    bar()
+    foo.call(obj)
+
+    // bind函数的其他使用(少用，怪异函数)
+    var baz = foo.bind(obj,'qas',12,233)
+    baz('james')
+  </script>
+</body>
+</html>

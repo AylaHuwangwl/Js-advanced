@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // 网络请求工具的封装
+    function request(url, callbackFn) {
+      var results = ['1', '2', '3']
+      callbackFn(results)
+    }
+    var obj = {
+      name: [],
+      name1:[],
+      // 早期没有箭头函数之前
+      network: function () {
+        var _this = this
+        request('/name', function (res) {
+          // 这里this找不到去上层作用域找，是network,network的this指向obj
+          _this.name = [].concat(res)
+        })
+      },
+
+      // 有箭头函数后
+      network1:function() {
+        request('/name',(res)=> {
+          this.name1 = [].concat(res)
+        })
+      }
+    }
+
+    obj.network()
+    obj.network1()
+    console.log(obj); //obj.name = ['1', '2', '3']  obj.name1 = ['1','2','3']
+  </script>
+</body>
+
+</html>

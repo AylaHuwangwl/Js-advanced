@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=\, initial-scale=1.0">
+  <title>this的指向问题</title>
+</head>
+
+<body>
+  <script>
+    function foo() {
+      console.log("foo函数", this); //this指向window
+    }
+    const obj = {
+      baz: '123',
+      bar: function () {
+        console.log('obj中', this); //this指向obj对象
+      }
+    }
+    foo();
+    obj.bar();
+  </script>
+</body>
+
+</html>

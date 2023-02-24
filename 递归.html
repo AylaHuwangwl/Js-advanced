@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // function clone(target) {
+    //   if (typeof target === 'object') {
+    //     let cloneTarget = {};
+    //     for (const key in target) {
+    //       // 第一个key是name，target[key] =='小黄'。直接返回小黄，{name:'小黄'}
+    //       console.log(key, clone(target[key]));
+    //       cloneTarget[key] = clone(target[key]);
+    //     }
+    //     return cloneTarget;
+    //   } else {
+    //     return target;
+    //   }
+    // };
+    // function deepclone(target) {
+    //   if (typeof target === 'object') {
+    //     let cloneObj = Array.isArray(target) ? [] : {};
+    //     for (let item in target) {
+    //       cloneObj[item] = deepclone(target[item])
+    //     }
+    //     return cloneObj
+    //   } else {
+    //     return target
+    //   }
+    // }
+
+    // 考虑到拷贝对象是数组的情况
+    // function reviewdeepclone(target) {
+    //   if (typeof target == 'object') {
+    //     let clonetarget = Array.isArray(target) ? [] : {}
+    //     for (let key in target) {
+    //       clonetarget[key] = reviewdeepclone(target[key])
+    //     }
+    //     return clonetarget
+    //   } else {
+    //     return target
+    //   }
+    // }
+    // 没有循环引用会导致栈溢出
+    // let obj = {
+    //   name: '小黄',
+    //   age: '20',
+    //   hobby: {
+    //     name: '排球',
+    //     value: '1',
+    //   },
+    // }
+    // obj.obj = obj;
+    // let obj1 = reviewdeepclone(obj)
+    // obj1.hobby.name = '足球';
+    // console.log(obj, obj1);
+    // 考虑循环引用的情况
+    function deepclonewithMap(target, map = new WeakMap) {
+      if (typeof target === 'object') {
+        let cloneTarget = Array.isArray(target) ? [] : {};
+        // ①第一次执行这个代码的时候，map.get(target)肯定是false,这块不执行
+        if (map.get(target)) {
+          return map.get(target);
+        }
+        // ②来到这里，map.set设置键值对[key:target,value:cloneTarget],此时cloneTarget为[]/{}，但是打印map的时候已经有target，且value不为[]/{}了
+        map.set(target, cloneTarget);
+        for (const key in target) {
+          // ③当key等于obj时，再次递归，但是每次递归的时候cloneTarget都被设置了[]/{}
+          cloneTarget[key] = deepclonewithMap(target[key], map);
+        }
+        return cloneTarget;
+      } else {
+        return target;
+      }
+    }
+
+
+    let obj = {
+      name: '小黄',
+      age: '20',
+    }
+    obj.obj = obj;
+    deepclonewithMap(obj);
+    // 判断类型
+    console.log(Object.prototype.toString.call({}))
+    console.log(Object.prototype.toString.call([]))
+    console.log(Object.prototype.toString.call(null))
+    console.log(Object.prototype.toString.call(undefined))
+    console.log(Object.prototype.toString.call(true))
+    console.log(Object.prototype.toString.call(123))
+    console.log(Object.prototype.toString.call(''))
+    console.log(Object.prototype.toString.call(() => { }))
+    console.log(Object.prototype.toString.call(new Map))
+    console.log(Object.prototype.toString.call(new Set))
+
+
+
+    console.log('------')
+    // 冒泡排序,时间复杂度最大为0(n^2),最小为O(n)（相邻两辆比较）
+    function bubbleSort(arr) {
+      for (let i = 0; i < arr.length - 1; i++) {
+        for (let j = 0; j < arr.length - 1 - i; j++) {
+          if (arr[j] > arr[j + 1]) {
+            [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]]
+          }
+        }
+      }
+      return arr
+    }
+    console.log(bubbleSort([2, 1, 35, 3, 5])) //[1,2,3,5,35]
+
+
+
+    // 选择排序(选择出最小的排在前面) O(n^2)
+    function selectSort(arr) {
+      for (let i = 0; i < arr.length; i++) {
+        let minIndex = i;
+        for (let j = i + 1; j < arr.length; j++) {
+          if (arr[j] < arr[minIndex]) {
+            minIndex = j
+          }
+        }
+        if (i !== minIndex) {
+          [arr[i], arr[minIndex]] = [arr[minIndex], arr[i]];
+        }
+      }
+      return arr
+    }
+    console.log(selectSort([3, 6, 5, 4, 3, 4, 2, 1, 4, 6]));
+
+
+    // 插入排序，将遍历到的这个数与前面的有序序列比较，若比较小则插进去[]
+    // 时间复杂度：O(n)
+    function insertSort(arr) {
+      for (let i = 1; i < arr.length; i++) {
+        let current = arr[i];
+        let j = i - 1;
+        while (j >= 0 && arr[j] > current) {
+          arr[j + 1] = arr[j];
+          j--;
+        }
+        arr[j + 1] = current;
+      }
+      return arr;
+    }
+    console.log(insertSort([3, 6, 5, 4, 3, 4, 2, 1, 4, 6]));
+    // 递归实现斐波那契数列，递归必须有结束条件不然陷入循环栈溢出
+    function fibonacci(n) {
+      if (n === 1 || n === 2) return 1
+      return fibonacci(n - 1) + fibonacci(n - 2)
+    }
+    // for循环实现斐波那契数列
+    function fibonacci1(n) {
+      var n1 = 1;
+      var n2 = 1;
+      var result = 0
+      for(var i = 3; i <= n; i++) {
+        result = n1 + n2
+        n1 = n2
+        n2 = result
+      }
+      return result
+    }
+    console.log(fibonacci(5))
+    console.log(fibonacci(10))
+    console.log(fibonacci1(5))
+    console.log(fibonacci1(10))
+
+
+    function foo(m, n) {
+
+    }
+
+
+    //手动实现forEach函数
+    // let name = [];
+    // name.forEach((item,index,arr)=>{
+
+    // })
+    function hyforEach(fn,arr){
+      for(let i in arr){
+        fn(i,arr[i],arr)
+      }
+    }
+    hyforEach(function(index,item,arr){
+        console.log('---',index,item,arr);
+    },[123,456,232])
+
+    // 手动实现find函数
+    Array.prototype.hyFind = function(fn){
+      for(let i in this){
+       let isFlag =  fn(this[i],i,this)
+       if(isFlag){
+        return this[i]
+       }
+      }
+    }
+   let a = [1,2,3,4,5].hyFind((item,i)=>{
+      return item == 6
+    })
+    console.log(a);
+
+    console.log(new Date())
+  </script>
+</body>
+
+</html>

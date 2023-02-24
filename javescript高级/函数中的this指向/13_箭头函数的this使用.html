@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    /*
+     // 箭头函数中压根没有this
+    var bar = () => {
+      console.log("bar函数", this);
+    }
+    bar() //this指向window，并不是因为箭头函数作用域有this，而是变量的查找规则，当前作用域找不到this，去上层作用域找（全局）
+    bar.apply('aaa') //通过apply绑定也是没有this
+    */
+   
+
+
+    // this的查找规则，一层一层往上找，对象的{}不形成作用域
+    var obj = {
+      message: '消息',
+      bar: function () {
+        var foo = () => {
+          console.log('obj中的this函数1', this)
+        }
+        return foo
+      },
+    }
+    var baz = obj.bar() //foo
+    baz() //执行foo函数，this指向obj对象
+
+
+    // 例子2
+    var obj = {
+      message: '消息',
+      bar: () => {
+        var foo = () => {
+          console.log('obj中的this函数2', this)
+        }
+        return foo
+      },
+    }
+    var baz = obj.bar() //foo
+    baz() //执行foo函数，this指向window对象  ps:对象的{}不形成作用域
+  </script>
+</body>
+
+</html>

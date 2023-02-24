@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    function foo(name,age,height){
+      console.log('foo函数',this);
+      console.log(name,age,height)
+    }
+    foo() //直接调用指向window
+    // 第一个参数是this指向的对象，第二个参数是需要传的实参，以数组形式传递
+    foo.apply('apply',["小鼠",33,1.77])
+    // 第一个参数是this指向的对象，后面的参数是需要传的实参，以参数列表形式传递
+    foo.call('call',"小黄",23,1.99)
+  </script>
+</body>
+</html>

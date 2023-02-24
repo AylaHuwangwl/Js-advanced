@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // image.png
+    // 1、默认绑定的优先级最低 2、显示绑定的优先级高于隐式绑定 3、new绑定优先级高于隐式 
+    // 4、new不能和apply、call使用，可以和bind使用，且优先级高于bind
+    const obj = {
+      name:'小黄',
+      foo:function(){
+        console.log("obj中的函数",this);
+      }
+    }
+    // function baz(){
+    //   console.log("baz中的函数",this);
+    // }
+    var test = obj.foo.bind('测试优先级')
+    new obj.foo() //{}
+    obj.foo() //obj
+    new test() //{}
+  </script>
+</body>
+</html>

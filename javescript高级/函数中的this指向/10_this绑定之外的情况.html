@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 情况1：显示绑定nul/undefined,使用的规则是默认绑定
+    function foo() {
+      console.log('foo',this)
+    }
+    foo()   //window
+    foo.call('abc') //'abc'
+    foo.call(null) //window
+    foo.call(undefined) //window
+
+    // 情况2：间接函数引用
+    function foo1() {
+      console.log('foo',this)
+    }
+    var obj1 = {
+      name:'123',
+      foo2:function(){
+        console.log(this);
+      }
+    }
+    var obj2 = {
+      name:'1233333'
+    };
+    obj2.foo2 = obj1.foo2
+    obj2.foo2(); //obj2
+    (obj2.foo2 = obj1.foo2)() //window,相当于直接调用函数
+    // P525完
+  </script>
+</body>
+</html>

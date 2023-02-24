@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 1、如果箭头函数只有一个参数，（）可以省略
+    // 2、如果函数体只有一行执行代码，可以省略,但不能带return关键字
+    //3、只有一行代码时，这行代码的表达式结果会作为函数的返回值
+    //4、如果默认返回的是一个对象，则需要在对象外面加上（）
+    var names = ['a','b','c','d']
+    names.forEach(item => console.log(item))
+    names.filter(item => item == 'a')
+    names.forEach(item => ({'name':item}))
+
+  </script>
+</body>
+</html>
