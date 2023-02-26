@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script src="./js/test.js" defer></script>
+    <script>
+        console.log('我不加defer属性');
+        window.addEventListener('DOMContentLoaded', () => {
+            console.log("defer中的代码要在这个事件执行之前执行");
+        })
+    </script>
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+    <div>4</div>
+    <div>5</div>
+</body>
+
+</html>
