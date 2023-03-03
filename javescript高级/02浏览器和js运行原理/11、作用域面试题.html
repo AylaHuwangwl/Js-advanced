@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    var n = 100
+    function foo(){
+      n = 200
+    }
+    foo() 
+    console.log(n); //200,函数体种的代码不是定义新变量而是将上层作用域的n修改成200
+
+    var n =100
+    function foo(){
+      console.log(n);
+      // var 
+      // P550 15.41
+    }
+  </script>
+</body>
+</html>
