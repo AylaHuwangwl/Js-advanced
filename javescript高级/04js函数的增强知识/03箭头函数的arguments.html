@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // var bar = ()=>{
+    //   console.log(arguments);
+    // }
+    // bar(11,22,33) //报错，箭头函数中没有arguments，去上层作用域也找不到就报错
+
+    // 箭头函数的嵌套
+    function foo(){
+      var boo = ()=>{
+        console.log(arguments);
+      }
+      boo()
+    }
+    foo(1,2,3)
+  </script>
+</body>
+</html>

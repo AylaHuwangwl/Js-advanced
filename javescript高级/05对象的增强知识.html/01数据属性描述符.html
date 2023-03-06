@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    var obj = {
+      name:'why'
+    }
+    Object.defineProperty(obj,"name",{
+      configurable:false, //告诉js引擎，obj对象的name属性不能被删除
+      enumerable:false, //~，不能被枚举
+      writable:false, //~，该属性只读
+      value:'corderwhy' //返回这个value
+    })
+  </script>
+</body>
+</html>

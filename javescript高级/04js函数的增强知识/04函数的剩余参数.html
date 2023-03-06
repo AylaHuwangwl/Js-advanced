@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 剩余参数与arguments的区别：剩余参数是数组，arguments是类数组
+    function foo(num1,num2,...othernums){
+      console.log(arguments);
+      console.log(othernums);
+    }
+    foo(1,2,3,4,5,6,7)
+  </script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    function foo(m,n,z,f){}
+    var bar = function(){}
+    // 自定义属性
+    foo.message = 'Hello'
+    console.log(foo.message);
+
+    // 函数的属性①：name
+    console.log(foo.name);
+    console.log(bar.name);
+    // 函数的属性②：length:函数形参的个数（不包含剩余参数和赋予默认值的参数）
+    function zoo(a,b,c){}
+    console.log(zoo.length); //3
+    console.log(foo.length); //4
+    console.log(bar.length); //0
+  </script>
+</body>
+</html>

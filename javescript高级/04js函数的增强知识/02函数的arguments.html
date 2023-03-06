@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    function foo(m,n){
+      console.log(arguments); //类数组
+      console.log(arguments[0]);
+      console.log(arguments[1]);
+      // 可迭代对象才可以for..of
+      for(let arg of arguments){
+        console.log(arg);
+      }
+    }
+    foo(10,20,30,40)
+
+    // 将arguments转换成数组的方法
+    function bar(){
+      //方法1
+      var newArr = []
+      for(var arg of arguments){
+        newArr.push(arg)
+      }
+      console.log(newArr);
+
+      // 方法2
+      var newArr1 = Array.from(arguments)
+      var newArr2 = [...arguments]
+      console.log(newArr1)
+      console.log(newArr2)
+      // 方法3
+       var newArr3 = Array.prototype.slice.apply(arguments)
+       console.log(newArr3)
+    }
+    bar(111,222,333)
+
+  
+  </script>
+</body>
+</html>

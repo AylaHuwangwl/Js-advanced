@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // 将多个函数组合在一起
+    function double(num) {
+      return num * 2
+    }
+    function pow(num) {
+      return num ** 2
+    }
+    // 组合函数封装：传入多个函数，自动将多和函数组合在一起挨个调用
+    // function foo(num) {
+    //   return pow(double(num))
+    // }
+    function composeFn(...fns){
+      var length = fns.length
+      if(!length) return 
+      for(let i = 0;i<length;i++){
+        var fn = fns[i]
+        if(typeof fn !== 'function'){
+          throw new Error(`index position ${i} must be function`)
+        }
+      }
+      return function(...args){
+        var result = fns[0].apply(this,args)
+        for(var i = 1;i< length;i++){
+          var fn = fns[i]
+          result = fn.apply(this,[result])
+        }
+        return result
+      }
+    }
+    var newArr = composeFn(double,pow,console.log)
+    newArr(100)
+  </script>
+</body>
+
+</html>

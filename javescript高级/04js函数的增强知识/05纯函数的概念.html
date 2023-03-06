@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 纯函数
+    function sum(n1,n2){
+      console.log(n1+n2);
+    }
+
+    // 不是纯函数
+    function foo(obj){
+      console.log(obj);
+      obj.age = 12
+    }
+    var obj = {
+      name:'123'
+    }
+    foo(obj)
+
+    // slice是纯函数，splice不是纯函数
+  </script>
+</body>
+</html>
