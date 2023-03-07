@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // 方式重点，改变Student的显式原型
+    function Person(name, age) {
+      this.name = name;
+      this.age = age;
+    }
+
+    Person.prototype.running = function () {
+      console.log('我在奔跑')
+    }
+    Person.prototype.eating = function () {
+      console.log('我在吃饭')
+    }
+    function Stuedent(name, age, sno, score) {
+      // this.name = name; 
+      // this.age = age; 
+      // 借用构造函数实现继承，缺点：1、构造函数被调用两次，2、stu1中存在两份父类的属性
+      Person.call(this, name, age) //该this会指向new 创建的Student实例，也就是stu1
+      this.sno = sno;
+      this.score = score;
+    }
+    Stuedent.prototype.studying = function () {
+      console.log('我在学习')
+    }
+    var p = new Person('why',19)
+    Stuedent.prototype = p
+    var stu1 = new Stuedent('kobe', 20, 123, 358)
+    console.log(stu1); //四个属性都有
+  </script>
+</body>
+
+</html>

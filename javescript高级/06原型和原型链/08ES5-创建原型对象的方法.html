@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 继承：父类实例对象的创建方法（原型式继承函数/寄生式继承）
+    // 满足条件：必须创建一个父类的实例对象，这个实例对象的隐式原型指向父类的显示原型，将这个对象赋值给子类的显示原型
+    function Person(){}
+    function Student(){}
+    // 方式一
+    var p = new Person()
+    Student.prototype = p
+    // 方式二
+    var obj = {}
+    Object.setPrototypeOf(obj,Person.prototype)
+    Student.prototype = obj
+    // 方式三
+    function F(){}
+    F.prototype = new Person()
+    Student.prototype = new F()
+    // 方案四
+    var obj = Object.create(Person.prototype)
+    console.log(obj.__proto__ === Person.prototype);
+    Student.prototype = obj
+
+    // 真是开发将方案四进行封装,工具函数
+    // 创建对象方法
+    function createObject(o){
+      function F(){}
+      F.prototype = o
+      return new F()
+    }
+    // 将子父联系在一起：寄生式函数
+    function inherit(Subtype,Supertype){
+      // Subtype.prototype = Object.create(Supertype.prototype)
+      Subtype.prototype = createObject(Supertype.prototype)
+      Object.defineProperty(Subtype.prototype,"constructor",{
+        enumerable:false,
+        configurable:true,
+        writable:true,
+        value:Subtype
+      })
+    }
+    inherit(Student,Person)
+  </script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    function Person(name, age) {
+      this.name = name;
+      this.age = age;
+    }
+    function Stuedent(name, age, sno, score) {
+      this.name = name; //代码①
+      this.age = age;  //代码①
+      this.sno = sno;
+      this.score = score;
+    }
+    Person.prototype.running = function () {
+      console.log('我在奔跑')
+    }
+    Person.prototype.eating = function () {
+      console.log('我在吃饭')
+    }
+    // Stuedent.prototype.running = function(){
+    //   console.log('我在奔跑')
+    // }
+    // Stuedent.prototype.eating = function(){
+    //   console.log('我在吃饭')
+    // }
+    Stuedent.prototype.studying = function () {
+      console.log('我在学习')
+    }
+
+    // 想让Student的实例继承Person的方法
+    //方式一：将Person的原型赋值给Studengt的原型
+    // 缺点：父类和子类共享用一个原型对象，修改其中任意一个另一个也会修改
+    // Student.prototype = Person.prototype
+
+    // 方式二：创建父类实例对象作为子类的原型对象
+    // 缺点：（1）不加代码①打印实例是看不到属性的，只存在于父类中
+    // （2）代码①中的两个属性被多个对象共享，如果是引用类型修改会相互影响
+    // （2）不能给Person传递参数让每个stu有自己的属性
+    var p = new Person('why', 18)
+    Stuedent.prototype = p
+    Stuedent.prototype.studying = function () {
+      console.log('我在学习')
+    }
+    var stu1 = new Stuedent('kobe', 20, 123, 358)
+    stu1.eating()  //我在吃饭
+    console.log(stu1);
+  </script>
+</body>
+
+</html>
