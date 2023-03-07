@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 任何对象都有自己的原型
+    var obj = {
+      name:'why',
+      age:18
+    }
+    console.log(obj.name,obj.age);
+    // 获取原型对象
+    console.log(obj.__proto__);
+    console.log(Object.getPrototypeOf(obj));
+    console.log(obj.__proto__ === Object.getPrototypeOf(obj)) //true
+
+    // 原型的作用：
+    // 当我们通过[[get]]方式获取一个属性对应的value时
+    // 1> 他会优先在自己的对象中查找。找到直接返回
+    // 2>找不到就会在原型对象中找
+    obj.__proto__.message = 'abc'
+    console.log(obj.message); //'abc'
+  </script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    var obj = {}
+    function foo(){}
+    // 将函数看陈一个普通对象它是有__proto__ (隐式原型)：查找key的value时会在原型身上查找
+    console.log(obj.__proto__);
+    console.log(foo.__proto__);
+
+    // 将函数看成是一个函数时，它具备prototype(显示原型)：用来构建对象给对象设置隐式原型
+    console.log(foo.prototype);
+    console.log(obj.prototype); //undefined,对象没有prototype
+
+    /*
+        new操作符的步骤
+        1、在内存中创建一个新的对象
+        2、将this指向这个对象
+        3、将这个对象的隐式原型[[prototype]]赋值为该构造函数的prototype属性
+        4、执行函数体中的代码
+        5、将这个对象默认的返回
+
+    */
+   function Foo(){}
+   console.log(Foo.prototype);
+   var foo = new Foo()
+   console.log(foo.__proto__ === Foo.prototype); //true
+  </script>
+</body>
+</html>

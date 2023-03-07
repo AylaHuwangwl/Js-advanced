@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    function Person() { }
+    console.log(Person.prototype);
+    // 进行重构，constructor直接指向Person函数
+    // 这样写的constructor是可以枚举的，不符合原型对象
+    Person.prototype = {
+      message: 'Hello',
+      info: {
+        name: 'hhh', age: 30
+      },
+      running: function () {
+
+      },
+      eating: function () {
+
+      },
+      // construcor:Person
+      
+    }
+    Object.defineProperty(Person.prototype,'construcor',{
+      value:Person, //该对象是不可枚举的
+      enumerable:false,
+      configurable:true,
+      writable:true,
+       
+    })
+    var p1 = new Person()
+    console.log(p1.message);
+    // console.log(Object.keys(Person.prototype)); //['message', 'info', 'running', 'eating','construcor']
+    console.log(Object.keys(Person.prototype));  //['message', 'info', 'running', 'eating']
+
+    // 面向对象：封装、继承、多态
+    // P586
+  </script>
+</body>
+
+</html>

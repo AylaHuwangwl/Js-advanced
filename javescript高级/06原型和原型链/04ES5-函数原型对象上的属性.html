@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    function Person(){
+
+    }
+  // 原型对象上的属性constructor指向当前的函数对象
+    var personProtoType = Person.prototype
+    console.log(personProtoType.constructor == Person);   //true
+
+    // P582 构造函数创建对象的内存表现
+    // 原型对象上修改的东西很多的时候可以重构
+</script>
+</body>
+</html>
