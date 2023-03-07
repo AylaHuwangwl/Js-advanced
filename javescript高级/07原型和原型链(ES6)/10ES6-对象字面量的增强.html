@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 属性的增强
+    var name = 'why'
+    var age = 18
+    var obj = {
+      name,age
+    }
+    function foo(){
+      var message = 'Hello World'
+      var info = 'my name is why'
+      return {
+        message,age
+      }
+    }
+    // 方法的增强
+    var obj1 = {
+      name,
+      running:function(){}, //不增强之前
+      singing(){}
+    }
+
+    // 计算属性名
+    var key = "address" + " city"
+    var obj2 = {
+      [key]:'广州'
+    }
+    console.log(obj2)
+
+    // day36 P616 完结
+  </script>
+</body>
+</html>
