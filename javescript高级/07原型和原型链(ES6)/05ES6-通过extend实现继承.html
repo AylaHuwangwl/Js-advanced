@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    class Person {
+      constructor(name, age) {
+        this.name = name;
+        this.age = age;
+      }
+      running() {
+        console.log(this.name + '跑步');
+      }
+      eating() {
+        console.log(this.name + '吃饭');
+      }
+    }
+    class Student extends Person {
+      constructor(name, age, sno, score) {
+        // this.name = name;
+        // this.age = age;
+        // 调用父类的构造函数
+        super(name,age)
+        this.sno = sno;
+        this.score = score;
+      }
+      // running() {
+      //   console.log('学生跑步');
+      // }
+      // eating() {
+      //   console.log('学生吃饭');
+      // }
+      studying() {
+        console.log(this.name+'学习');
+      }
+    }
+    var stu1 = new Student('学生',15,87523,345)
+    console.log(stu1.name)
+    stu1.eating()
+  </script>
+</body>
+
+</html>

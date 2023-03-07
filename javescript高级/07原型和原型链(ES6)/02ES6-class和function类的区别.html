@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // class写法是function方法的语法糖
+    // class定义的类不能作为普通函数调用
+
+    function Person1 (){}
+    var p1 = new Person1()
+    console.log(p1.__proto__ === Person1.prototype)
+   class Person2{}
+    var p2 = new Person2()
+    console.log(p2.__proto__ === Person2.prototype)
+    Person1() //不报错
+    Person2() //报错
+  </script>
+</body>
+</html>

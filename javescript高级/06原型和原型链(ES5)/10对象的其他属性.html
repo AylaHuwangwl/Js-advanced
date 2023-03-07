@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    var obj = {
+      name: '123',
+      age: 18
+    }
+    var info = {
+      sno: 123,
+      score: 789,
+    }
+    info.__proto__ = obj
+    // hasOwnProperty不会找来自原型链中的属性
+    console.log(obj.hasOwnProperty('name')) //true
+    console.log(info.hasOwnProperty('name')) //false
+    //  in/for..in会找来自原型链中的属性
+    console.log('name' in info)  //true
+    for (let i in info) {
+      console.log(i)  //有name,age
+    }
+
+    // instance 也会沿着原型链查找
+   console.log(obj instanceof Object) //true
+
+
+  //  对象只有隐式原型
+  // 函数既有隐式原型也有显示原型
+
+  // 原型上的方法叫实例方法,直接添加在构造函数上的方法叫类方法
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+  // 静态方法相当于ES5中的类方法，直接写在构造函数上的方法
+  class Person{
+    constructor(name,age){
+      this.name = name;
+      this.age = age;
+    }
+    running(){
+      console.log('跑步');
+    }
+    // 静态方法
+    static eating(){
+      console.log(this) //this指向Person这个类，是Person调用的 
+      console.log('吃饭')
+    }
+  }
+  var p1 = new Person('aas',20)
+  p1.running()
+//  p1.eating() //报错
+  Person.eating()
+  </script>
+</body>
+</html>

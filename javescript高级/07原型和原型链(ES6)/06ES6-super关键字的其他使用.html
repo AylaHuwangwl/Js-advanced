@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    class Animal {
+      constructor(name, age) {
+        this.name = name;
+        this.age = age;
+      }
+      running() {
+        console.log(this.name + '跑步');
+      }
+      static eating() {
+        console.log(this.name + '吃饭');
+      }
+
+    }
+    class Dog extends Animal {
+      constructor(name, age, voice, leg) {
+        // 只有在构造函数中可以super(..,..)使用
+        super(name, age)
+        this.voice = voice;
+        this.leg = leg;
+      }
+      drink() {
+        console.log(this.name + '喝水');
+      }
+      running(){
+        super.running()
+        console.log('子类新增的一行代码跑步');
+      }
+      static eating(){
+        super.eating()
+        console.log('小狗的吃饭')
+      }
+    }
+    Dog.eating()
+    var dog = new Dog('狗子',18,'汪汪汪','4支腿')
+    dog.running()
+    
+  </script>
+</body>
+
+</html>
