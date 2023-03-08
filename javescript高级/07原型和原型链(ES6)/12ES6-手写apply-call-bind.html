@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    function foo(n1, n2, n3, n4, n5, n6) {
+      console.log(n1, n2, n3, n4, n5, n6);
+      console.log(this)
+      // console.log(arguments);
+    }
+    // 将foo当成一个对象，对象中有个call和apply属性，foo.__proto === Function.prototype
+
+    foo.call()
+
+    // Array.prototype.split.call();
+    // [].split.call()
+
+    // 给函数对象添加方法
+    // foo.apply('123',[1,2,3,4,5,6,7])
+    Function.prototype.hyapply = function (thisArg, otherArgs) {
+      thisArg = (thisArg === null || thisArg === undefined) ? window : Object(thisArg)
+      // 1、目的：将this指向thisArg,调用foo函数（foo == this）
+      // thisArg.fn = this //this此时指向foo
+      Object.defineProperty(thisArgs, 'fn', {
+        enumerable: false,
+        configurable: true,
+        value: this
+      })
+      thisArg.fn(...otherArgs) //调用foo,this指向thisArg
+      delete thisArg.fn
+    }
+    Function.prototype.hycall = function (thisArg, otherArgs) {
+      thisArg = (thisArg === null || thisArg === undefined) ? window : Object(thisArg)
+      // 1、目的：将this指向thisArg,调用foo函数（foo == this）
+      // thisArg.fn = this //this此时指向foo
+      Object.defineProperty(thisArgs, 'fn', {
+        enumerable: false,
+        configurable: true,
+        value: this
+      })
+      thisArg.fn(...otherArgs) //调用foo,this指向thisArg
+      delete thisArg.fn
+    }
+    // foo.hyapply('123', [1, 2, 3, 4, 5, 6])
+    // foo.hycall('123', 1, 2, 3, 4, 5, 6)
+
+
+
+    // 可对俩函数进行封装
+    // 一、单独封装
+    function execFn(thisArg,otherArgs,fn1){
+      thisArg = (thisArg === null || thisArg === undefined) ? window : Object(thisArg)
+      // 1、目的：将this指向thisArg,调用foo函数（foo == this）
+      // thisArg.fn = this //this此时指向foo
+      Object.defineProperty(thisArg, 'fn', {
+        enumerable: false,
+        configurable: true,
+        value: fn1,
+        writable:false
+      })
+      thisArg.fn(...otherArgs) //调用foo,this指向thisArg
+      delete thisArg.fn
+    }
+    Function.prototype.hyapply = function (thisArg, otherArgs) {
+      execFn(thisArg, otherArgs,this)
+    }
+    Function.prototype.hycall = function (thisArg, otherArgs) {
+      execFn(thisArg, otherArgs,this)
+    }
+    foo.hyapply('123',['a','b','c','d','e','f','g'])
+    foo.hycall('123','a','b','c','d','e','f','g')
+
+    // 二、封装在原型中
+    Function.prototype.hyexec = function(thisArg,otherArgs){
+      thisArg = (thisArg === null || thisArg === undefined) ? window : Object(thisArg)
+      // 1、目的：将this指向thisArg,调用foo函数（foo == this）
+      // thisArg.fn = this //this此时指向foo
+      Object.defineProperty(thisArgs, 'fn', {
+        enumerable: false,
+        configurable: true,
+        value: this
+      })
+      thisArg.fn(...otherArgs) //调用foo,this指向thisArg
+      delete thisArg.fn
+    }
+    Function.prototype.hyapply = function (thisArg, otherArgs){
+      this.hyexec(thisArg,otherArgs)
+    }
+    Function.prototype.hycall = function (thisArg, otherArgs){
+      this.hyexec(thisArg,otherArgs)
+    }
+
+  </script>
+</body>
+
+</html>

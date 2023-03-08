@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 对象的解构：有严格顺序要求，可以...表示剩余属性
+    var name = 'why';
+    var age = 18
+    var score = 355
+    var obj = {
+      name,age,score
+    }
+    var {name,...newObj} = obj 
+    console.log(newObj);
+    var {name:name1} = obj
+    console.log(name1)
+  </script>
+</body>
+</html>
