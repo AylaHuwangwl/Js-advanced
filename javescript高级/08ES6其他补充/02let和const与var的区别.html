@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 1、var定义的变量存在作用域提升，let和const定义的变量不存在作用于提升
+        console.log(foo); //报错，不能访问，但不意味着foo变量只有在代码执行时才会被创建，以及创建只是不能被访问
+        let foo = '123'
+        // 也就是说在执行上下文的词法环境被创建出来的时候变量就已经创建出来了只是不能访问
+        // 2、存在暂时性死区：在块级作用域顶部到变量声明之前是不可以访问这个变量的
+    </script>
+</body>
+
+</html>

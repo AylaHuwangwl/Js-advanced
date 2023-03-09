@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 暂时性死区和定义的位置没有关系，和代码的执行顺序有关 
+        function foo() {
+            console.log(message);
+        }
+        let message = '消息'
+        foo()
+        console.log(message);
+        // 暂时性死区形成后这个标识符不能被访问
+        function foo1() {
+            console.log(message);
+            let message = '第二个消息'
+        }
+        foo1()//报错
+    </script>
+</body>
+
+</html>
