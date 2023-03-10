@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+ const s1 = Symbol()
+  const s2 = Symbol()
+  // 将Symbol加入到对象中
+  // ①
+  const obj = {
+    [s1]:123,
+    [s2]:345
+  }
+  // ②
+  const obj1 = {}
+  Object.defineProperty(obj,s1,{
+    value:'123'
+  })
+  // ③
+  console.log(Object.keys(obj))//获取不到symbol
+  console.log(Object.getOwnPropertySymbols(obj)) //可以获取，可用for..of遍历
+
+  // description：描述
+  // 1、Symbol生成的值都是独一无二的
+  // 2、相同的key，可以通过Symbol.for生成相同的Symbol值
+  const a1 = Symbol()
+  const a2 = Symbol.for(a1.description) //.for(a1.description)中的a1.description叫做key
+  const a3 = Symbol.for(a1.description)
+  console.log(a1 === a2)//false
+  console.log(a1 === a3)//false
+  console.log(a2 === a3)//true
+
+  </script>
+ 
+</body>
+</html>

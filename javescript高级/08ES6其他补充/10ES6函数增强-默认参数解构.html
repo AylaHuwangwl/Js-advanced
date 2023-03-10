@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=
+  , initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    const obj = {name:'why'}
+    const {name='kobe',age=19} = obj
+    function foo(obj = {name:'why',age:19}){
+      console.log(obj.name,obj.age)
+    }
+    function foo({name,age} = {name:'why',age:18}){
+      console.log(name,age)
+    }
+    // 解构
+    function foo({name ='why',age =18} = {}){
+      console.log(name,age)
+    }
+    foo()
+    // 剩余参数、箭头函数
+    // 箭头函数作为一个对象是有隐式原型的，但他不能作为一个构造函数去创建实例他没有显示原型
+    // 箭头函数不绑定this,arguments、super参数，查找的话去上层作用域查找
+  </script>
+</body>
+</html>

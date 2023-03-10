@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // `${}`,{}中可以显示表达式
+    const name1 = 'why'
+    const age = 18
+
+    const info = `my name is ${name1},age is ${age}`
+    console.log(info)
+    function foo(...args){
+      console.log('参数',args)
+    }
+    foo`my name is ${name1},my age is ${age}` //模板字符串会被拆分，第一个元素是数组，是被模板字符串拆分的字符串组合，后面的元素是一个个模板字符串传入的内容
+    
+  </script>
+</body>
+</html>

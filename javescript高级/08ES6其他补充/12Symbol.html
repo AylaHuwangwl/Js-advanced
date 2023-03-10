@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // Symbol:ES6新增的数据类型，基本使用过程,用来生成一个独一无二的值
+    const obj = {
+      name:'why'
+    }
+    obj.name = 'Kobe' //这样很容易就把对象中已有属性给覆盖掉
+    const name = Symbol()
+    obj[name] = function(){}
+    console.log(obj) //{name:'Kobe',Symbol():f()}
+  </script>
+</body>
+</html>

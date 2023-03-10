@@ -8,7 +8,16 @@
 </head>
 <body>
   <script>
-    
+    // ES6新增的数据结构：WeakMap\WeakSet\Set\Map
+    let obj1 = {}
+    let obj2 = {}
+    let obj3 = {}
+    let arr = [obj1,obj2,obj3]
+    obj1 = null
+    obj2 = null
+    obj3 = null
+  // 三个对象不会被销毁，arr仍引用
+  // P648未完结
   </script>
 </body>
 </html>

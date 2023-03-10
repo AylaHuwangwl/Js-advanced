@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    function foo(arg1 = '我是默认值11',arg2){
+      // 这两种不严谨，当传入0/null/''/false时也被默认为是false'
+      // arg1 = arg1 || '我是默认值'
+      // arg1 = arg1? arg1:'我是默认值'
+
+      // ES6之后的新写法
+      // arg1 = arg1 ?? '我是默认值'
+      // arg1 = (arg1 !== undefined || arg1 !== null )?arg1:'我是默认值'
+
+      // 默认参数
+      // foo(arg1 = '我是默认值11',arg2)
+    }
+  </script>
+</body>
+</html>
