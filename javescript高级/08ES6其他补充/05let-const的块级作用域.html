@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 1、在ES5之前，只有全局和函数会形成作用域,var声明的变量没有作用域
+    {
+      var message = 'Hello'
+    }
+    console.log(message) //hello
+    // 从ES6开始，使用let/const/function/class声明的变量都是有块级作用域的
+    {
+      let age = 18
+      const height = 1.88
+      class Person{}
+      // 引擎会对函数做特殊处理使之可以访问
+      function foo(){
+        console.log("我可以访问到")
+      }
+    }
+    console.log(age,height)
+    console.log(new Person())
+    foo() //'我可以访问到'
+  </script>
+</body>
+</html>
