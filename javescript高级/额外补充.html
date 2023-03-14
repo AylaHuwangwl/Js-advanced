@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 销售助手企业微信扫码登录以及点击企微工作台应用的登录
+    // 1、后端在企微后台将应用添加，设置可信域名，拿到企业ID(appid),应用id(agentid),可信域
+    // 2、构造扫码登陆链接，将企业微信提供扫码登陆的js文件添加到index.html文件中，通过new WWlogin(配置文件)生成二维码
+    // 3、生成二维码的配置信息中有一个重定向的url，用于扫码登录点击确定之后跳转的路径，登陆成功后跳转的路径中包含两个参数code&state
+    // 4、主要用到的是code参数，将code参数传给后端，调用后端企微登录的接口，完成登录，获取token和用户信息、菜单信息
+
+    // 企微添加应用程序，给网页授权登录，点击该应用程序免登录进入页面，需要在打开的网页里面携带用户的身份信息
+    // 1、用企微提供的网页授权链接，拼接上一些授权需要用到的参数比如appid&redirect_url&reponse_type&state等，其中redirect_rul是授权后重定向的回调链接地址
+    // 2、企业微信管理员应该绑定这个地址，在点击应用的时候会调用这个地址
+    // 3、公司员工点击这个链接之后，页面会跳转至重定向的链接地址并带上code&state参数，根据code参数去请求登录接口获取token和用户信息、菜单信息
+
+    // 后端将一些审批信息，okr信息等推送给企业相应都责任的时候，员工点击链接也需要实现应用的免登录
+    // 1、先判断有无token，有的话说明token还未过期还可以继续使用
+    // 2、没有的话说明此时还没有登录，获取推送链接中的code参数调用登录接口，
+    // 3、如若登录不成功，重定向到登陆页面手动登录，登录成功将token、菜单信息、用户信息等保存下来
+    // 4、将以上业务代码封装一下保存在mixin中，在需要设置自动登录的页面将mixin引入，用一个布尔值变量判断是否自动登陆成功，以决定页面是否展示
+  </script>
+</body>
+</html>

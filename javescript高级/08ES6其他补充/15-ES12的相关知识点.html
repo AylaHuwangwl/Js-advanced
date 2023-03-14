@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 1、FinalizationRegist  判断一个对象或者变量什么时候回收
+    // 2、WeakRefs，弱引用
+    // 3、replaceall、replace
+    // 4、ES13 method.at()
+    // 5、ES13-hasOwn与hasOwnProperty的区别：
+      //    hasOwnProperty是实例对象，在obj.__prototype__上，很容易被重写；
+      //   不严谨，Object.create(null)创建的对象的原型指向null,这样就不能去获取Object.protype上的方法了，用Object.hasOwn(obj,'name')可以获取
+
+    // 6、class中的新成员
+    class Person {
+      // 这样是指的属性是公共（public）实例属性
+      height = 1.88
+      // 私有属性
+      // ①程序员约定熟成 ：_以下划线开头的变量
+      // ②新增加的：#intro = '那么'
+
+      // 类属性
+      static totalCount = '70亿'
+      // 静态类属性
+      static #totalCount1 = '70亿'
+      // 静态代码块,只执行一次
+      static {
+        console.log('Hello')
+        console.log('World')
+      }
+      constructor(pname,page){
+        // 对象中的属性,在constructor通过this设置
+        this.pname = pname
+        this.page = page
+        this.address = '广州市'
+      }
+    }
+    const p = new Person('why',19)
+    console.log(p)
+    console.log(p.pname,p.page,p.height,p.address)
+    console.log(Person.totalCount) //类属性可直接访问
+    // console.log(Person.#totalCount) //静态类属性不可在外部访问，报错
+  </script>
+</body>
+</html>
