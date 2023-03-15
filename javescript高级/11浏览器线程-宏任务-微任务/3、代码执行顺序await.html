@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // ****
+    // console.log('script satrt')
+    // function requestData(url) {
+    //   return new Promise((resolve, reject) => {
+    //     setTimeout(() => {
+    //       console.log('setTimeout')
+    //       resolve(url)
+    //     }, 2000)
+    //   })
+    // }
+    // function getData() {
+    //   console.log('getData start')
+    //   requestData('why').then(res => {
+    //     console.log('then1-res:', res)
+    //   })
+    //   console.log('getData end')
+    // }
+    // getData()
+    // console.log('script end')
+    // // script satrt/getData start/getData end/script end/setTimeout/then1-res:'why'
+
+
+
+    console.log('script satrt')
+    function requestData(url) {
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          console.log('setTimeout')
+          resolve(url)
+        }, 2000)
+      })
+    }
+    async function getData() {
+      console.log('getData start')
+      const res = await requestData('why')
+      console.log('then1-res:', res)
+      console.log('getData end')
+    }
+    getData()
+    console.log('script end')
+    //script satrt/getData start/script end/setTimeout/then1-res:why/getData end'
+  </script>
+</body>
+
+</html>

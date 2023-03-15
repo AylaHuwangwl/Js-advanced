@@ -14,6 +14,7 @@
   <script>
 
     // 创建正则
+    // /^abc$/ig :严格匹配abc,^表示以什么开头，$表示以什么结尾
     const re1 = /abc/ig
     const message = "fdabc123 faBC323 dfABC222 A2324aaBc"
 
@@ -37,7 +38,7 @@
     // const result2 = message.match(re1)
     // console.log(result2)
 
-    // 2.2. matchAll方法
+    // 2.2. matchAll方法，返回迭代器
     // 注意: matchAll传入的正则修饰符必须加g
     // const result3 = message.matchAll(re1)
     // // console.log(result3.next())

@@ -20,13 +20,14 @@
 
     // 2.使用字符串的方法, 传入一个正则表达式
     // 需求: 将所有的abc(忽略大小写)换成cba
-    // const newMessage = message.replaceAll("abc", "cba")
+    // const newMessage = message.replaceAll("abc", "cba") //这样写只匹配小学‘abc’
     // console.log(newMessage)
-    
+    //  ig忽略大小写
     const newMessage = message.replaceAll(/abc/ig, "cba")
     console.log(newMessage)
 
     // 需求: 将字符串中数字全部删除
+    // \d表示数字，+表示0或者多个
     const newMessage2 = message.replaceAll(/\d+/ig, "")
     console.log(newMessage2)
 

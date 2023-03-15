@@ -18,13 +18,15 @@
         }, 2000);
       })
     }
-
+   function requestData1(url) {}
     async function getData() {
       const res1 = await requestData("why")
       console.log("res1:", res1)
 
       const res2 = await requestData(res1 + "kobe")
       console.log("res2:", res2)
+      const res3 = await requestData1(res2)
+      console.log("res3:",res3)
     }
 
     getData().catch(err => {
