@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <input type="text">
+  <button>取消防抖</button>
+  <script>
+    const inputEl = document.querySelector('input')
+    const buttonEl = document.querySelector('button')
+    function hy_debounce(debounceFn, time) {
+      let timer = null
+      const _debounce = function (...args) {
+        if (timer) clearTimeout(timer)
+        timer = setTimeout(() => {
+          debounceFn.apply(this, args)
+          timer = null //严谨一点加上这个
+        }, time)
+      }
+      _debounce.cancel = function () {
+        if (timer) clearTimeout(timer)
+      }
+      return _debounce
+    }
+    const debounceFn = hy_debounce(function (enent) {
+      console.log('发送请求', this.value, enent)
+    }, 1000)
+    inputEl.oninput = debounceFn
+    buttonEl.onclick = function () {
+      debounceFn.cancel()
+    }
+  </script>
+</body>
+
+</html>

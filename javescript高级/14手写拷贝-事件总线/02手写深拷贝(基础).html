@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 函数：判断需要拷贝的函数是否是对象
+    function isObject(value){
+      const valueType = typeof value
+      return (value !== null)&&(valueType === 'function')||(valueType === 'object')
+    }
+    function deepClone(obj){
+      if(!isObject(obj)){
+        return obj
+      }
+      const cloneInfo = Array.isArray(obj)?[]:{}
+      for(let key in obj){
+        cloneInfo[key] = deepClone(obj[key])
+      }
+      return cloneInfo
+    }
+    const info = {
+      name:'笑傲',
+      age:17,
+      hobby:['sing','dance','ball','game'],
+      friend: {
+        name: "kobe",
+        address: {
+          name: "洛杉矶",
+          detail: "斯坦普斯中心"
+        }
+      }
+    }
+    const newInfo = deepClone(info)
+    newInfo.hobby[1] = 'swimming'
+    console.log(info.hobby[1])
+    console.log(newInfo.hobby[1])
+  </script>
+</body>
+</html>

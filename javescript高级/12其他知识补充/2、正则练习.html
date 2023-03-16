@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 将时间转化成时间戳
+    // +new Date()   1678931389830
+    function formatTime(timestamp,fmtString){
+      const date = new Date(timestamp)
+      const dateO = {
+        'y+':date.getFullYear(),
+        'M+':date.getMonth()+1,
+        'd+':date.getDate(),
+        'h+':date.getHours(),
+        'm+':date.getMinutes(),
+        's+':date.getSeconds(),
+      }
+      for(let key in dateO){
+        if(new RegExp(key).test(fmtString)){
+          const value = (dateO[key]+'').padStart(2,'0')
+          fmtString = fmtString.replace(new RegExp(key),value)
+        }
+      }
+      return fmtString
+    }
+    console.log(formatTime(1678931389830,'yy/MM/dd hh:mm:ss'))
+  </script>
+  
+</body>
+</html>

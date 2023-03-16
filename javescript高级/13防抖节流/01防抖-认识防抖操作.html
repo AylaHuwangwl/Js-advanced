@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=
+  , initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <input type="text">
+  <script>
+    // 操作一次发送一次，防抖：在规定时间内没有操作则请求
+    // 产生频繁时间的时候，将事件往后延迟，延迟时间之内还有触发该事件，将上一次延迟设置的定时器取消
+    const inpitEl = document.querySelector('input')
+    inpitEl.oninput = function(event){
+      console.log('模拟发送网络请求')
+    }
+  </script>
+</body>
+</html>

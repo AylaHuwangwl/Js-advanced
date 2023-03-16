@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 函数：判断需要拷贝的函数是否是对象
+    function isObject(value){
+      const valueType = typeof value
+      return (value !== null)&&(valueType === 'function')||(valueType === 'object')
+    }
+    function deepClone(obj,map = new WeakMap()){
+      if(!isObject(obj)){
+        return obj
+      }
+      if(map.get(obj)){
+        return map.get(obj)
+      }
+      // 如果函数是set
+      if(obj instanceof Set){
+        let setObj = new Set()
+        for(let setItem of obj){
+          setObj.add(deepClone(setItem))
+        }
+        return setObj
+      }
+      // 如果函数是function
+      if(typeof obj === 'function'){
+        return obj
+      }
+      // 如果是Symbol:Symbol作为value
+      if(typeof obj === 'symbol'){
+        return Symbol(obj.description)
+      }
+      const cloneInfo = Array.isArray(obj)?[]:{}
+      map.set(obj,cloneInfo)
+      // 这样便利不能遍历到Symbol值
+      for(let key in obj){
+        cloneInfo[key] = deepClone(obj[key],map)
+      }
+      const symbolKeys = Object.getOwnPropertySymbols(obj)
+      for(const symbolKey of symbolKeys){
+        cloneInfo[Symbol(symbolKey.description)] = deepClone(obj[symbolKey])
+      }
+      return cloneInfo
+    }
+    const s1 = Symbol('我是symbol1')
+    const s2 = Symbol('我是symbol2')
+    const info = {
+      name:'笑傲',
+      age:17,
+      hobby:['sing','dance','ball','game'],
+      friend: {
+        name: "kobe",
+        address: {
+          name: "洛杉矶",
+          detail: "斯坦普斯中心"
+        }
+      },
+      // set是可迭代对象，可以for..of..，但不可以for...in...
+      set:new Set(['测试','小黄']),
+      [s1]:'我是symbol1',
+      [s2]:'我是symbol2',
+      symbolkey:Symbol('abc')
+    }
+    // 不考虑循环引用时会栈溢出
+    info.self = info
+    const newInfo = deepClone(info)
+    newInfo.hobby[1] = 'swimming'
+    console.log(info)
+    console.log(newInfo)
+  </script>
+</body>
+</html>
